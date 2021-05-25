@@ -1,8 +1,10 @@
 : nip swap drop ;
-: nip swap drop ;
-: over swap dup >r swap r> ;
+: over >r dup r> swap ;
 : 2dup over over ;
 : 2drop drop drop ;
+: rot >r swap r> swap ;
+: -rot swap >r swap r> ;
+: tuck swap over ;
 : != = not ;
 : >= < not ;
 : <= swap < not ;

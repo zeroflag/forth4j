@@ -58,7 +58,7 @@ public class ForthTest {
   }
 
   @Test
-  public void testJuggling() {
+  public void testJuggling() { // http://sovietov.com/app/forthwiz.html
     assertEquals(asList(2, 1), evalGetStack("1 2 swap"));
     assertEquals(asList(1, 2, 1), evalGetStack("1 2 over"));
     assertEquals(asList(3, 3), evalGetStack("3 dup"));
@@ -66,6 +66,9 @@ public class ForthTest {
     assertEquals(asList(6), evalGetStack("5 6 nip"));
     assertEquals(asList(7), evalGetStack("7 8 drop"));
     assertEquals(emptyList(), evalGetStack("6 5 2drop"));
+    assertEquals(asList(2, 3, 1), evalGetStack("1 2 3 rot"));
+    assertEquals(asList(3, 1, 2), evalGetStack("1 2 3 -rot"));
+    assertEquals(asList(2, 1, 2), evalGetStack("1 2 tuck"));
   }
 
   @Test

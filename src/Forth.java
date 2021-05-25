@@ -11,7 +11,7 @@ public class Forth {
   private final Map<String, Word> dict = new LinkedHashMap<>();
   private final Set<String> immediate = new HashSet<>();
   private final Stack<Object> stack = new Stack<>();
-  private final Stack<Integer> rstack = new Stack<>();
+  private final Stack<Object> rstack = new Stack<>();
   private String lastWord;
   private StringTokenizer tokenizer;
   private Mode mode = Mode.INTERPRET;
@@ -33,7 +33,7 @@ public class Forth {
     public void enter() {
       rstack.push(ip);
       innerLoop(address);
-      ip = rstack.pop();
+      ip = (Integer) rstack.pop();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Forth {
     dict.put("false", () -> stack.push(false));
     dict.put("here", () -> stack.push(dp));
     dict.put("lit", () -> stack.push(heap[ip++]));
-    dict.put(">r", () -> rstack.push((Integer)stack.pop()));
+    dict.put(">r", () -> rstack.push(stack.pop()));
     dict.put("r>", () -> stack.push(rstack.pop()));
     dict.put("i", () -> stack.push(rstack.peek()));
     dict.put("j", () -> stack.push(rstack.get(rstack.size() - 2)));
